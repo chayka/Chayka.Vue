@@ -1,41 +1,41 @@
 {
-    "name": "vue-chayka-bootstrap",
-    "version": "0.0.4",
-    "description": "A set of handy vue components and services",
-    "main": "dist/index.js",
-    "scripts": {
-        "test": "npm test",
-        "prepublish": "gulp"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+ssh://git@github.com/chayka/Chayka.Vue.git"
-    },
-    "keywords": [
-        "vuejs",
-        "spinner",
-        "modal",
-        "http",
-        "forms",
-        "validation"
-    ],
-    "author": "Boris Mossounov <borix@tut.by> (https://anotherguru.me)",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/chayka/Chayka.Vue/issues"
-    },
-    "homepage": "https://github.com/chayka/Chayka.Vue#readme",
-    "devDependencies": {
-        "gulp": "^3.*",
-        "gulp-notify": "^2.*",
-        "laravel-elixir": "6.0.0-11",
-        "laravel-elixir-vue-2": "^0.2.0",
-        "laravel-elixir-webpack-official": "^1.0.6",
-        "less": "^2.7.2",
-        "less-loader": "^2.2.3"
-    },
-    "dependencies": {
-        "vue": "^2.*",
-        "vue-resource": "^1.2.0"
-    }
+  "name": "vue-chayka-bootstrap",
+  "version": "0.0.5",
+  "description": "A set of handy vue components and services",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "npm test",
+    "prepublish": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/chayka/Chayka.Vue.git"
+  },
+  "keywords": [
+    "vuejs",
+    "spinner",
+    "modal",
+    "http",
+    "forms",
+    "validation"
+  ],
+  "author": "Boris Mossounov <borix@tut.by> (https://anotherguru.me)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chayka/Chayka.Vue/issues"
+  },
+  "homepage": "https://github.com/chayka/Chayka.Vue#readme",
+  "devDependencies": {
+    "gulp": "^3.*",
+    "gulp-notify": "^2.*",
+    "laravel-elixir": "6.0.0-11",
+    "laravel-elixir-vue-2": "^0.2.0",
+    "laravel-elixir-webpack-official": "^1.0.6",
+    "less": "^2.7.2",
+    "less-loader": "^2.2.3"
+  },
+  "dependencies": {
+    "vue": "^2.*",
+    "vue-resource": "^1.2.0"
+  }
 }
