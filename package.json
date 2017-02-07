@@ -4,7 +4,8 @@
   "description": "A set of handy vue components and services",
   "main": "dist/index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "prepublish": "gulp"
   },
   "repository": {
     "type": "git",
