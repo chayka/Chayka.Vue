@@ -1,6 +1,6 @@
 {
   "name": "vue-chayka-bootstrap",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A set of handy vue components and services",
   "main": "dist/vue-chayka-bootstrap.min.js",
   "scripts": {
