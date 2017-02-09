@@ -13,7 +13,7 @@ Vue.component('modals', Modals);
 Vue.component('spinner', Spinner);
 Vue.component('spinners', Spinners);
 
-module.exports = {
+export {
     Spinner, Spinners, spinners,
     Modal, Modals, modals
 };
