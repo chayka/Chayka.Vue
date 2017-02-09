@@ -5,14 +5,17 @@ module.exports = {
     watch: false,
     entry: {
         index: './src/index.js',
-        vendor: ['vue', 'vue-resource']
+        // vendor: ['vue', 'vue-resource']
     },
     output: {
         path: path.resolve('./dist'),
         filename: '[name].js',
-        // library: 'VueChaykaBootstrap',
-        libraryTarget: 'umd'
+        library: 'VueChaykaBootstrap',
+        libraryTarget: 'umd',
     },
+    externals:[{
+        vue: 'Vue'
+    }],
     module: {
         rules: [
             {
@@ -66,15 +69,15 @@ module.exports = {
         hints: false
     },
     devtool: '#eval-source-map',
-    plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ['vendor', 'manifest'],
-            minChunks: function (module) {
-                // this assumes your vendor imports exist in the node_modules directory
-                return module.context && module.context.indexOf('node_modules') !== -1;
-            }
-        })
-    ]
+    // plugins: [
+    //     new webpack.optimize.CommonsChunkPlugin({
+    //         names: ['vendor', 'manifest'],
+    //         minChunks: function (module) {
+    //             // this assumes your vendor imports exist in the node_modules directory
+    //             return module.context && module.context.indexOf('node_modules') !== -1;
+    //         }
+    //     })
+    // ]
 };
 
 if (process.env.NODE_ENV === 'production') {
