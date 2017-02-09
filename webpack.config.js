@@ -6,7 +6,9 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve('./dist'),
-        filename: 'vue-chayka-bootstrap.min.js'
+        filename: 'vue-chayka-bootstrap.min.js',
+        library: 'VueChaykaBootstrap',
+        libraryTarget: 'umd'
     },
     module: {
         rules: [
