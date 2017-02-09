@@ -3,10 +3,13 @@ var webpack = require('webpack');
 
 module.exports = {
     watch: false,
-    entry: './src/index.js',
+    entry: {
+        index: './src/index.js',
+        vendor: ['vue', 'vue-resource']
+    },
     output: {
         path: path.resolve('./dist'),
-        filename: 'vue-chayka-bootstrap.min.js',
+        filename: '[name].js',
         library: 'VueChaykaBootstrap',
         libraryTarget: 'umd'
     },
@@ -63,15 +66,15 @@ module.exports = {
         hints: false
     },
     devtool: '#eval-source-map',
-    // plugins: [
-    //     new webpack.optimize.CommonsChunkPlugin({
-    //         name: 'vendor',
-    //         minChunks: function (module) {
-    //             // this assumes your vendor imports exist in the node_modules directory
-    //             return module.context && module.context.indexOf('node_modules') !== -1;
-    //         }
-    //     })
-    // ]
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['vendor', 'manifest'],
+            minChunks: function (module) {
+                // this assumes your vendor imports exist in the node_modules directory
+                return module.context && module.context.indexOf('node_modules') !== -1;
+            }
+        })
+    ]
 };
 
 if (process.env.NODE_ENV === 'production') {

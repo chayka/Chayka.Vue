@@ -2,7 +2,7 @@
   "name": "vue-chayka-bootstrap",
   "version": "0.0.10",
   "description": "A set of handy vue components and services",
-  "main": "dist/vue-chayka-bootstrap.min.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "npm test",
     "prepublish": "webpack -p"
