@@ -68,16 +68,17 @@ module.exports = {
     performance: {
         hints: false
     },
+    // devtool: false
     devtool: '#eval-source-map',
-    // plugins: [
-    //     new webpack.optimize.CommonsChunkPlugin({
-    //         names: ['vendor', 'manifest'],
-    //         minChunks: function (module) {
-    //             // this assumes your vendor imports exist in the node_modules directory
-    //             return module.context && module.context.indexOf('node_modules') !== -1;
-    //         }
-    //     })
-    // ]
+    plugins: [
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     names: ['vendor', 'manifest'],
+        //     minChunks: function (module) {
+        //         // this assumes your vendor imports exist in the node_modules directory
+        //         return module.context && module.context.indexOf('node_modules') !== -1;
+        //     }
+        // })
+    ]
 };
 
 if (process.env.NODE_ENV === 'production') {
@@ -90,7 +91,7 @@ if (process.env.NODE_ENV === 'production') {
             }
         }),
         new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
+            sourceMap: false,
             compress: {
                 warnings: false
             }
