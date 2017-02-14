@@ -22,5 +22,6 @@ import ajax from './ajax';
 export {
     Spinner, Spinners, spinners,
     Modal, Modals, modals,
+    FormField,
     ajax
 };
