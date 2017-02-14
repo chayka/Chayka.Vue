@@ -56,4 +56,36 @@ export default{
 }
 </script>
 
-<style src="./Spinners.less"></style>
+<style lang="less">
+@margin-between-spinners: 15px;
+
+.surge-spinners {
+    & > .spinners {
+        position: fixed;
+        background-color: #eeeeee;
+        border-radius: 5px;
+        padding: @margin-between-spinners @margin-between-spinners 0;
+        opacity: 0.8;
+        z-index: 1000;
+
+        bottom: 10%;
+        right: 50px;
+
+        & > .surge-spinner {
+            margin-bottom: @margin-between-spinners;
+            display: none;
+
+            &:first-child {
+                display: flex;
+            }
+        }
+
+        &:hover > {
+            & > .surge-spinner {
+                display: flex;
+            }
+        }
+    }
+}
+
+</style>

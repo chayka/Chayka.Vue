@@ -14,6 +14,9 @@ import Spinners from './Components/Spinners.vue';
 Vue.component('spinner', Spinner);
 Vue.component('spinners', Spinners);
 
+import FormField from './Components/FormField.vue';
+Vue.component('form-field', FormField);
+
 import ajax from './ajax';
 
 export {
