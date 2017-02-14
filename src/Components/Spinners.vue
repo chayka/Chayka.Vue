@@ -31,8 +31,8 @@ export default{
          * @return {string}
          */
         show (spinner = {message: 'Loading...', id: ''}) {
-            this.spinners.push(spinner);
-            return spinner.id;
+            this.spinners.push(spinner)
+            return spinner.id
         },
 
         /**
@@ -41,7 +41,7 @@ export default{
          * @param id
          */
         hide (id) {
-            let index = this.spinners.findIndex(value => id === value.id);
+            let index = this.spinners.findIndex(value => id === value.id)
             if (index >= 0) {
                 this.spinners.splice(index, 1)
             }
@@ -50,8 +50,8 @@ export default{
     },
 
     created () {
-        spinners.$on('show', this.show);
-        spinners.$on('hide', this.hide);
+        spinners.$on('show', this.show)
+        spinners.$on('hide', this.hide)
     }
 }
 </script>
