@@ -31,8 +31,8 @@ export default{
          * @return {string}
          */
         show (spinner = {message: 'Loading...', id: ''}) {
-            this.spinners.push(spinner)
-            return spinner.id
+            this.spinners.push(spinner);
+            return spinner.id;
         },
 
         /**
@@ -41,7 +41,7 @@ export default{
          * @param id
          */
         hide (id) {
-            let index = this.spinners.findIndex(value => id === value.id)
+            let index = this.spinners.findIndex(value => id === value.id);
             if (index >= 0) {
                 this.spinners.splice(index, 1)
             }
@@ -50,42 +50,10 @@ export default{
     },
 
     created () {
-        spinners.$on('show', this.show)
-        spinners.$on('hide', this.hide)
+        spinners.$on('show', this.show);
+        spinners.$on('hide', this.hide);
     }
 }
 </script>
 
-<style lang="less">
-@margin-between-spinners: 15px;
-
-.surge-spinners {
-    & > .spinners {
-        position: fixed;
-        background-color: #eeeeee;
-        border-radius: 5px;
-        padding: @margin-between-spinners @margin-between-spinners 0;
-        opacity: 0.8;
-        z-index: 1000;
-
-        bottom: 10%;
-        right: 50px;
-
-        & > .surge-spinner {
-            margin-bottom: @margin-between-spinners;
-            display: none;
-
-            &:first-child {
-                display: flex;
-            }
-        }
-
-        &:hover > {
-            & > .surge-spinner {
-                display: flex;
-            }
-        }
-    }
-}
-
-</style>
+<style src="./Spinners.less"></style>
