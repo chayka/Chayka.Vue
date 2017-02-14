@@ -13,10 +13,10 @@ module.exports = {
         library: 'VueChaykaBootstrap',
         libraryTarget: 'umd',
     },
-    externals:[{
-        vue: 'Vue',
-        'vue-resource': 'VueResource'
-    }],
+    externals:{
+        vue: 'vue',
+        'vue-resource': 'vue-resource'
+    },
     module: {
         rules: [
             {
