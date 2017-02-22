@@ -1,5 +1,5 @@
 <template>
-    <div class="surge-spinner"
+    <div class="chayka-spinner"
          :style="visibilityStyle">
         <span class="spinner-css"></span>
         <span class="spinner-message" v-if="!message"><slot></slot></span>
@@ -57,13 +57,13 @@ export default{
 }
 </script>
 
-<style lang="less">
+<style rel="stylesheet/less" lang="less">
 
 @img-width: 24px;
 @img-height: 24px;
 @size-padding: 10px;
 
-.surge-spinner {
+.chayka-spinner {
     padding: 0 0 0 0;
     // background: url('../assets/spinner32x32.gif') no-repeat 0 0;
     background-size: @img-width @img-height;
@@ -78,7 +78,6 @@ export default{
         height: @img-height;
         background-color: #333;
         margin-right:  @size-padding;
-        display: inline-block;
         vertical-align: center;
 
         border-radius: 100%;  

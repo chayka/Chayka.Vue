@@ -15,13 +15,15 @@ Vue.component('spinner', Spinner);
 Vue.component('spinners', Spinners);
 
 import FormField from './Components/FormField.vue';
+import FormValidator from './Components/FormValidator.vue';
 Vue.component('form-field', FormField);
+Vue.component('form-validator', FormValidator);
 
 import ajax from './ajax';
 
 export {
     Spinner, Spinners, spinners,
     Modal, Modals, modals,
-    FormField,
+    FormField, FormValidator,
     ajax
 };

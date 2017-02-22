@@ -19,6 +19,7 @@ const ajax = {
      * @param {string} options.spinnerMessage message to show while request is being made
      * @param {string|boolean} options.successMessage message to show when request completed successfully
      * @param {string|boolean} options.errorMessage message to show when request completed with error
+     * @param {formValidator} options.validator
      * @param body
      */
     request (url, options, body = null) {
@@ -29,6 +30,7 @@ const ajax = {
             spinnerMessage: 'Loading...',
             successMessage: true,
             errorMessage: true,
+            validator: null,
         }, options);
 
         let spinnerId = null;

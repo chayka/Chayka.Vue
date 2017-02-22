@@ -107,7 +107,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style rel="stylesheet/less" lang="less">
 .surge-modals-fader{
     text-align: center;
     z-index: 100001;

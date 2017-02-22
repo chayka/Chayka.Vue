@@ -61,13 +61,13 @@ export default {
     },
 
     created () {
-        modals.$on('show', this.show)
+        modals.$on('show', this.show);
         modals.$on('hide', this.hide)
     }
 }
 </script>
 
-<style lang="less">
+<style rel="stylesheet/less" lang="less">
 .surge-modals{
     .surge-modals-fader{
         z-index: 100002;

@@ -8,9 +8,9 @@ module.exports = {
         // vendor: ['vue', 'vue-resource']
     },
     output: {
-        path: path.resolve('./dist'),
+        path: path.resolve('../dist'),
         filename: '[name].js',
-        library: 'VueChaykaBootstrap',
+        library: ['Vue', 'Chayka', 'Bootstrap'],
         libraryTarget: 'umd',
     },
     externals:{
@@ -49,6 +49,10 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
+                test: /\.less$/,
+                loader: 'style!css!less',
+            },
+            {
                 test: /\.(png|jpg|gif|svg)$/,
                 loader: 'file-loader',
                 options: {
@@ -64,7 +68,8 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
-        noInfo: true
+        noInfo: true,
+        open: false,
     },
     performance: {
         hints: false
