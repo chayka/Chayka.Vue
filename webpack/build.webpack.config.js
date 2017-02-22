@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: path.resolve('../dist'),
         filename: '[name].js',
-        library: ['Vue', 'Chayka', 'Bootstrap'],
+        library: ['Chayka', 'Bootstrap'],
         libraryTarget: 'umd',
     },
     externals:{
