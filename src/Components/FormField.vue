@@ -1315,7 +1315,7 @@
                 border: 1px solid black;
                 background: black;
                 color: white;
-                padding: .6em;
+                padding: .7em;
 
                 &::before{
                     content: ' ';

@@ -19,10 +19,22 @@
         <button @click="sendSuppressedErrorRequest()">Suppress error message from backend</button>
         <pre>{{errorResponse}}</pre>
 
-        <h2>Spinners</h2>
-
         <h2>Forms</h2>
+        <form-validator ref="validator">
 
+            <form-field class=""
+                        name="email"
+                        label="Email"
+                        hint="Your email please"
+                        approval="Good job"
+                        validate-email
+                        validate-required>
+                <input type="text" v-model="email"/>
+            </form-field>
+        </form-validator>
+        <button @click="sendFormSuccessRequest()">Submit form</button>
+        <button @click="sendFormErrorRequest()">Submit and render backend errors</button>
+        <pre>{{formResponse}}</pre>
     </div>
 </template>
 
@@ -39,6 +51,8 @@
                 defaultResponse: '',
                 successResponse: '',
                 errorResponse: '',
+                formResponse: '',
+                email: '',
             }
         },
         created () {
@@ -106,6 +120,24 @@
                     delay: 1000,
                     errorMessage: false
                 }).then(() => {}, response => this.errorResponse = formatJson(response.body, null));
+            },
+
+            sendFormSuccessRequest () {
+                this.formResponse = '';
+                ajax.get('/api/success.json', {
+                    delay: 1000,
+                    errorMessage: 'Frontend says Booo!',
+                    validator: this.$refs.validator,
+                }).then(response => this.formResponse = formatJson(response.body, null));
+            },
+
+            sendFormErrorRequest () {
+                this.formResponse = '';
+                ajax.get('/api/form.error.json', {
+                    delay: 1000,
+                    errorMessage: false,
+                    validator: this.$refs.validator,
+                }).then(() => {}, response => this.formResponse = formatJson(response.body, null));
             },
         }
     }

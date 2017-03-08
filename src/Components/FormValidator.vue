@@ -31,7 +31,7 @@
             },
 
             getField (name) {
-                return this.getFields().find(field => field.getName === name);
+                return this.getFields().find(field => field.getName() === name);
             },
 
             validateField (name, silent = false){

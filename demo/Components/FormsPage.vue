@@ -190,7 +190,7 @@
             },
 
             getValues () {
-                return JSON.stringify(this.$refs.validator && this.$refs.validator.getValues());
+                return JSON.stringify(this.$refs.validator && this.$refs.validator.getValues(), null, '  ');
             }
         }
     }
