@@ -20,10 +20,11 @@ Vue.component('form-field', FormField);
 Vue.component('form-validator', FormValidator);
 
 import ajax from './ajax';
+import avatars from './avatars';
 
 export {
     Spinner, Spinners, spinners,
     Modal, Modals, modals,
     FormField, FormValidator,
-    ajax
+    ajax, avatars
 };

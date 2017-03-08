@@ -16,7 +16,6 @@
             this.$on('FormField.register', this.registerField);
         },
         mounted () {
-            console.log({'validator.mounted': this});
         },
         methods: {
             getFields () {
@@ -47,6 +46,38 @@
                 }
             },
 
+            showError (name, error) {
+                this.setFieldState(name, 'error', error);
+            },
+
+            showErrors (errors) {
+                Object.keys(errors || {}).forEach(name => this.showError(name, errors[name]));
+            },
+
+            getValue (name) {
+                return this.getField(name).getValue();
+            },
+
+            getValues () {
+                return this.getFields().reduce((values, field) => {
+                    values[field.getName()] = field.getValue();
+                    return values;
+                }, {})
+            },
+
+            getError (name) {
+                let field = this.getField(name);
+                return field.state === 'error' && field.msg || '';
+            },
+
+            getErrors () {
+                return this.getFields().reduce((errors, field) => {
+                    if (field.state === 'error'){
+                        errors[field.getName()] = field.msg;
+                    }
+                    return errors;
+                }, {})
+            },
 
         }
     }

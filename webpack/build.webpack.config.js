@@ -14,7 +14,7 @@ module.exports = {
         libraryTarget: 'umd',
     },
     externals:{
-        vue: 'vue',
+        'vue': 'vue',
         'vue-resource': 'vue-resource'
     },
     module: {

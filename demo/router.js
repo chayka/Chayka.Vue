@@ -5,6 +5,7 @@ Vue.use(VueRouter);
 
 import HomePage from './components/HomePage.vue';
 import AjaxPage from './components/AjaxPage.vue';
+import AvatarsPage from './components/AvatarsPage.vue';
 import FormsPage from './components/FormsPage.vue';
 import ModalsPage from './components/ModalsPage.vue';
 import SpinnersPage from './components/SpinnersPage.vue';
@@ -14,6 +15,7 @@ const router = new VueRouter({
     routes: [
         { path: '/', name: 'home', component: HomePage },
         { path: '/ajax', name: 'ajax', component: AjaxPage },
+        { path: '/avatars', name: 'avatars', component: AvatarsPage },
         { path: '/forms', name: 'forms', component: FormsPage },
         { path: '/modals', name: 'modals', component: ModalsPage },
         { path: '/spinners', name: 'spinners', component: SpinnersPage },

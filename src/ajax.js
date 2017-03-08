@@ -19,6 +19,7 @@ const ajax = {
      * @param {string} options.spinnerMessage message to show while request is being made
      * @param {string|boolean} options.successMessage message to show when request completed successfully
      * @param {string|boolean} options.errorMessage message to show when request completed with error
+     * @param {number|boolean} options.delay add faked delayin ms (used for testing only)
      * @param {formValidator} options.validator
      * @param body
      */
@@ -55,9 +56,20 @@ const ajax = {
             }
         }
 
+        if (options.validator && !options.validator.validateFields()) {
+            return Vue.Promise.reject({
+                validationErrors: options.validator.getErrors ()
+            });
+        }
+
         options.before = function () {
             showSpinner()
         };
+
+        function sleep(ms) {
+            return new Vue.Promise(resolve => setTimeout(resolve, ms));
+        }
+
 
         let promise = null;
         switch (options.method) {
@@ -76,81 +88,87 @@ const ajax = {
                 throw new Error('HTTP method not set');
         }
 
-        return promise.then(
-            response => {
-                hideSpinner();
-                if (options.successMessage) {
-                    let message = '';
-                    if (typeof options.successMessage === 'boolean') {
-                        message = response.body.message || '';
-                    } else {
-                        message = options.successMessage;
-                    }
-                    if (message) {
-                        modals.alert(message);
-                    }
+        function onSuccess (response) {
+            hideSpinner();
+            if (options.successMessage) {
+                let message = '';
+                if (typeof options.successMessage === 'boolean') {
+                    message = response.body.message || '';
+                } else {
+                    message = options.successMessage;
                 }
-                return response;
-            },
-
-            response => {
-                hideSpinner();
-                if (options.errorMessage) {
-                    let message = '';
-                    if (typeof options.errorMessage === 'boolean') {
-                        message = response.body.message || 'Server responded with an error';
-                    } else {
-                        message = options.errorMessage;
-                    }
-                    if (message) {
-                        modals.alert(message);
-                    }
+                if (message) {
+                    modals.alert(message);
                 }
-                return Vue.Promise.reject(response);
             }
-        );
+            return response;
+        }
+
+        function onError (response) {
+            hideSpinner();
+            if (options.errorMessage) {
+                let message = '';
+                if (response.body.code === 'errors' && options.validator) {
+                    options.validators.showErrors(response.body.payload);
+                }
+                if (typeof options.errorMessage === 'boolean') {
+                    message = response.body.message || 'Server responded with an error';
+                } else {
+                    message = options.errorMessage;
+                }
+                if (message) {
+                    modals.alert(message);
+                }
+            }
+            return Vue.Promise.reject(response);
+        }
+
+        return sleep(options.delay || 0).then(() => promise.then(
+            response => response.body && !response.body.code ? onSuccess(response) : onError(response),
+            onError
+        ));
     },
 
     get (url, options) {
         options = options || {};
         options.method = 'get';
-        return ajax.request('url', options);
+        return ajax.request(url, options);
     },
 
     head (url, options) {
         options = options || {};
         options.method = 'head';
-        return ajax.request('url', options);
+        return ajax.request(url, options);
     },
 
     jsonp (url, options) {
         options = options || {};
         options.method = 'jsonp';
-        return ajax.request('url', options);
+        return ajax.request(url, options);
     },
 
     delete (url, options) {
         options = options || {};
         options.method = 'delete';
-        return ajax.request('url', options);
+        return ajax.request(url, options);
     },
 
     post (url, body, options) {
         options = options || {};
         options.method = 'post';
-        return ajax.request('url', options, body);
+        return ajax.request(url, options, body);
     },
 
     put (url, body, options) {
         options = options || {};
         options.method = 'put';
-        return ajax.request('url', options, body);
+        return ajax.request(url, options, body);
     },
 
     patch (url, body, options) {
         options = options || {};
         options.method = 'patch';
-        return ajax.request('url', options, body);
+        return ajax.request(url, options, body);
     },
 
     resource (urlPattern, defaultOptions) {

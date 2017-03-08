@@ -8,7 +8,7 @@ export default new Vue({
          *
          * @param {object} modal
          */
-        show(modal) {
+        show (modal) {
             let defaults = {
                 content: '',
                 title: '',
@@ -25,21 +25,21 @@ export default new Vue({
          *
          * @param modal
          */
-        open(modal){
+        open (modal) {
             this.show(modal);
         },
 
         /**
          * Close current modal popup, by shifting queue
          */
-        hide() {
+        hide () {
             this.$emit('hide');
         },
 
         /**
          * Alias to hide
          */
-        close() {
+        close () {
             this.hide();
         },
 
@@ -52,7 +52,7 @@ export default new Vue({
          * @param okCallback
          * @param options
          */
-        alert(message, title = '', okCallback = null, options = {}){
+        alert (message, title = '', okCallback = null, options = {}) {
             this.show({
                 content: message,
                 title: title,
@@ -74,7 +74,7 @@ export default new Vue({
          * @param yesCallback
          * @param options
          */
-        confirm(message, title = '', yesCallback = null, options = {}){
+        confirm (message, title = '', yesCallback = null, options = {}) {
             this.show({
                 content: message,
                 title: title,

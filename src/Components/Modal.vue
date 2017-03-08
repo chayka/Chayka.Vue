@@ -1,18 +1,26 @@
 <template>
-    <div class="surge-modals-fader" v-if="visible || autoOpen" @click.self="hide('close')">
-        <div class="modals-modal" :class="cls" :style="{width: width, height: height}">
-            <div class="modal_header">
-                <div class="modal_header-title">{{title}}</div>
-                <div class="modal_header-close" @click="hide('close')">&times;</div>
-            </div>
-            <div class="modal_body"><slot></slot></div>
-            <div class="modal_buttons" v-if="buttons && buttons.length">
-                <button v-for="button of buttons"
-                        @click.prevent="buttonClicked(button)"
-                        class="button" :class="button.cls">{{button.text}}</button>
+    <transition name="modal" @after-leave="!opened && onClosed()">
+        <div class="surge-modals-fader"
+             v-if="opened || autoOpen"
+             :class="modalClass"
+             @click.self="hide('close')"
+             @keyup.esc="hide('close')">
+            <div class="modals-modal"
+                 :class="modalClass.concat(cls)"
+                 :style="{width: width, height: height}">
+                <div class="modal_header">
+                    <div class="modal_header-title">{{title}}</div>
+                    <div class="modal_header-close" @click="hide('close')">&times;</div>
+                </div>
+                <div class="modal_body"><slot></slot></div>
+                <div class="modal_buttons" v-if="buttons && buttons.length">
+                    <button v-for="button of buttons"
+                            @click.prevent="buttonClicked(button)"
+                            class="button" :class="button.cls">{{button.text}}</button>
+                </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -46,7 +54,9 @@ export default {
     },
     data: () => {
         return {
-            visible: false
+            visible: false,
+            opened: false,
+            payload: null,
         }
     },
     created () {
@@ -54,12 +64,30 @@ export default {
             this.open()
         }
     },
+    computed: {
+        modalClass () {
+            let res = [];
+            if(this.opened){
+                res.push('opened');
+            }
+            if(this.visible){
+                res.push('visible');
+            }
+            return res;
+        }
+    },
     methods: {
         /**
          * Show modal
          */
         show () {
-            this.visible = true
+            this.opened = true;
+//            window.setTimeout(() => {
+//                /**
+//                 * this timeout is set for the 'open' animation to work
+//                 */
+//                this.visible = true
+//            }, 100);
         },
 
         /**
@@ -75,8 +103,11 @@ export default {
          * @param payload
          */
         hide (payload) {
-            this.visible = false
-            this.$emit('hide', payload || 'unknown')
+            /**
+             * Keep in mind, that 'opened' set to false on animationend so css animation is crucial for the modal to hide
+             */
+            this.opened = false;
+            this.payload = payload;
         },
 
         /**
@@ -86,6 +117,13 @@ export default {
          */
         close (payload) {
             this.hide(payload)
+        },
+
+        /**
+         * This callback is called when 'close' animation is completed
+         */
+        onClosed () {
+            this.$emit('hide', this.payload);
         },
 
         /**
@@ -113,7 +151,7 @@ export default {
     z-index: 100001;
     position: fixed;
     background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0, .1);
+    background-color: rgba(0,0,0, .05);
     top: 0;
     left: 0;
     right: 0;
@@ -125,6 +163,18 @@ export default {
     box-sizing: border-box;
     vertical-align: middle;
 
+    transition: all .1s ease-in;
+    visibility: visible;
+    opacity: 1;
+
+    &.modal-enter, &.modal-leave-to{
+        visibility: hidden;
+        opacity: 0;
+        & > .modals-modal {
+            margin: 130px auto;
+        }
+    }
+
     & > .modals-modal{
         position: relative;
         background-color: white;
@@ -134,6 +184,15 @@ export default {
         margin: 100px auto;
         border: 1px solid gray;
         box-sizing: border-box;
+
+        transition: all .1s ease-in;
+
+        /*&.opened{*/
+        /*}*/
+
+        /*&.visible{*/
+            /*margin: 100px auto;*/
+        /*}*/
 
         & > .modal_header{
             position: relative;
@@ -180,5 +239,6 @@ export default {
             }
         }
     }
-}    
+}
+
 </style>

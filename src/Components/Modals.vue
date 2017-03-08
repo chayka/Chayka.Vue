@@ -1,12 +1,12 @@
 <template>
     <div class="surge-modals">
-        <modal ref="modal" v-for="(modal, i) in queue"
+        <modal ref="modal" v-if="modal"
                :title="modal.title"
                :buttons="modal.buttons"
                :cls="modal.cls"
                :width="modal.width"
                :height="modal.height"
-               :auto-open="true"
+               :auto-open="false"
                @hide="hide()">
             {{modal.content}}
         </modal>
@@ -48,14 +48,23 @@ export default {
                 width: '300px',
                 height: 'auto',
                 ...modal
-            })
+            });
+            let self = this;
+            window.setTimeout(()=>{
+                if(this.queue.length){
+                    self.$refs.modal.show();
+                }
+            }, 100);
         },
 
         /**
          * Close current modal popup, by shifting queue
          */
         hide () {
-            this.queue.shift()
+            this.queue.shift();
+            if(this.queue.length){
+                this.$refs.modal.show();
+            }
         }
 
     },
@@ -71,9 +80,13 @@ export default {
 .surge-modals{
     .surge-modals-fader{
         z-index: 100002;
-        display: none;
+        /*display: none;*/
+        /*visibility: hidden;*/
+        /*opacity: 0;*/
         &:first-child{
-            display: block;
+            /*display: block;*/
+            /*visibility: visible;*/
+            /*opacity: 1;*/
         }
     }
 }

@@ -3,7 +3,7 @@ import Vue from 'vue';
 export default new Vue({
     data(){
         return {
-            counter: 0,
+            counter: 0
         }
     },
 

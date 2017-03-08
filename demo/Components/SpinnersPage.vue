@@ -13,6 +13,7 @@
         name: 'SpinnersPage',
         data () {
             return {
+                counter: 0,
                 handles: [],
             }
         },
@@ -21,7 +22,8 @@
         },
         methods: {
             showGeneral () {
-                this.handles.push(spinners.show(`Spinner ${this.handles.length}`));
+                this.counter++;
+                this.handles.push(spinners.show(`Spinner ${this.counter}`));
             },
             hideGeneral () {
                 spinners.hide(this.handles.shift());

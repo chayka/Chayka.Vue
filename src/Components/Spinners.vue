@@ -75,7 +75,7 @@
                 margin-bottom: @margin-between-spinners;
                 display: none;
 
-                &:first-child {
+                &:last-child {
                     display: flex;
                 }
             }

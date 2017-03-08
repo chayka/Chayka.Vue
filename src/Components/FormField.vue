@@ -1,6 +1,6 @@
 <template>
     <div class="chayka-form-field" :class="cls">
-        <label class="field-label"><span>{{label}}<slot name="label"></slot></span></label>
+        <label class="field-label">{{label}}<slot name="label"></slot></label>
         <div class="field-input">
             <div class="input-box">
                 <slot></slot>
@@ -701,7 +701,6 @@
                 let valid = true;
 
                 if (config.isActive) {
-                    console.log(`'${value}' =?= '${config.password}'`);
                     valid = config.password === value;
                 }
 
@@ -791,6 +790,7 @@
                     progressMessage: 'validate-progress-message',
                     isActive: false,
                     delay: 500,
+                    fakeDelay: 0,
                     validate (value, cb) {
                         cb(true, value);
                     },
@@ -848,14 +848,17 @@
                             window.clearTimeout(self.asyncTimeout);
                         }
                         // console.log({ config });
-                        if (!silent) {
-                            self.setState('progress', nls._(config.progressMessage, {
-                                label: self.label,
-                                value: self.getValue()
-                            }));
-                        }
-                        self.asyncTimeout = window.setTimeout(() => {
-                            config.validate(value, _callback)
+                        self.asyncTimeout = window.setTimeout( () => {
+                            if (!silent) {
+                                self.setState('progress', nls._(config.progressMessage, {
+                                    label: self.label,
+                                    value: self.getValue()
+                                }));
+                            }
+
+                            window.setTimeout(() => {
+                                config.validate(value, _callback)
+                            }, config.fakeDelay || 0);
                         }, config.delay);
 
                     }
@@ -981,6 +984,10 @@
             border: 1px transparent solid;
             box-sizing: border-box;
 
+            &:empty{
+                display: none;
+            }
+
         }
 
         & > .field-label{
@@ -1088,7 +1095,7 @@
     }
 
     @color-valid: #050;
-    @color-error: #500;
+    @color-error: #600;
     @color-progress: #333;
 
     .colorize-field-background{
@@ -1106,19 +1113,19 @@
         }
     }
 
-    .colorize-labels{
+    .colorize-label{
         .valid{
-            .label{
+            .field-label{
                 color: @color-valid;
             }
         }
         .error{
-            .label{
+            .field-label{
                 color: @color-error;
             }
         }
         .progress{
-            .label{
+            .field-label{
                 color: @color-progress;
             }
         }
@@ -1202,7 +1209,7 @@
                 & > input[type=url],
                 & > select,
                 & > textarea {
-                    background-color: lighten(@color-error, 80%);
+                    background-color: lighten(@color-error, 75%);
                 }
             }
         }
@@ -1289,7 +1296,7 @@
                 }
             }
         }
-        .error {
+        .progress {
             .field-input {
                 & > .message {
                     color: @color-progress;
@@ -1467,7 +1474,7 @@
     }
 
     .label-colon{
-        .field-label>span::after{
+        .field-label::after{
             content: ':';
         }
     }
@@ -1475,6 +1482,11 @@
         .required{
             .field-label::after{
                 content: '*';
+            }
+        }
+        &.label-colon{
+            .field-label::after{
+                content: ':*';
             }
         }
     }
