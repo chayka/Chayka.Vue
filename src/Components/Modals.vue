@@ -80,13 +80,7 @@ export default {
 .surge-modals{
     .surge-modals-fader{
         z-index: 100002;
-        /*display: none;*/
-        /*visibility: hidden;*/
-        /*opacity: 0;*/
         &:first-child{
-            /*display: block;*/
-            /*visibility: visible;*/
-            /*opacity: 1;*/
         }
     }
 }

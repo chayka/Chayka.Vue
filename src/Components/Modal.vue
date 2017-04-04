@@ -187,13 +187,6 @@ export default {
 
         transition: all .1s ease-in;
 
-        /*&.opened{*/
-        /*}*/
-
-        /*&.visible{*/
-            /*margin: 100px auto;*/
-        /*}*/
-
         & > .modal_header{
             position: relative;
             border-bottom: 1px solid #eeeeee;

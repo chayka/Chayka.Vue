@@ -111,9 +111,6 @@ const ajax = {
             }
             if (options.errorMessage) {
                 let message = '';
-                // if (response.body.code === 'errors' && options.validator) {
-                //     options.validators.showErrors(response.body.payload);
-                // }
                 if (typeof options.errorMessage === 'boolean') {
                     message = response.body.message || 'Server responded with an error';
                 } else {

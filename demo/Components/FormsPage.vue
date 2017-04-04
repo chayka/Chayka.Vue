@@ -34,7 +34,7 @@
                 <form-field class=""
                             label="Required"
                             hint="Put something here"
-                            validate-required>
+                            :validate-required="{message: 'This field is required', active: needValidate}">
                     <input type="text" v-model="model.required"/>
                 </form-field>
 
@@ -57,7 +57,7 @@
                             label="Custom check"
                             approval="Good job!"
                             hint="Type in 'custom'"
-                            :validate-custom="value => value === 'custom'">
+                            :validate-custom="{validate: value => value === 'custom'}">
                     <input type="text" v-model="model.custom"/>
                 </form-field>
 
