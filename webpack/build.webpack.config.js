@@ -8,7 +8,7 @@ module.exports = {
         // vendor: ['vue', 'vue-resource']
     },
     output: {
-        path: path.resolve('../dist'),
+        path: path.resolve('./dist'),
         filename: '[name].js',
         library: ['Chayka', 'Bootstrap'],
         libraryTarget: 'umd',
