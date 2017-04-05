@@ -101,7 +101,7 @@
 
             sendBackendErrorRequest () {
                 this.errorResponse = '';
-                ajax.get('/api/error.json', {
+                ajax.get('/api/error.jsonerror', {
                     delay: 1000,
                 }).then(() => {}, response => this.errorResponse = formatJson(response.body, null));
             },
