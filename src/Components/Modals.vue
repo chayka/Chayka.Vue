@@ -1,5 +1,5 @@
 <template>
-    <div class="surge-modals">
+    <div class="chayka-modals">
         <modal ref="modal" v-if="modal"
                :title="modal.title"
                :buttons="modal.buttons"
@@ -77,8 +77,8 @@ export default {
 </script>
 
 <style rel="stylesheet/less" lang="less">
-.surge-modals{
-    .surge-modals-fader{
+.chayka-modals{
+    .chayka-modals-fader{
         z-index: 100002;
         &:first-child{
         }

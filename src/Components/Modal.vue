@@ -1,20 +1,20 @@
 <template>
     <transition name="modal" @after-leave="!opened && onClosed()">
-        <div class="surge-modals-fader"
+        <div class="chayka-modals-fader"
              v-if="opened || autoOpen"
              :class="modalClass"
              @click.self="hide('close')"
              @keyup.esc="hide('close')">
             <div class="modals-modal"
                  :class="modalClass.concat(cls)"
-                 :style="{width: width, height: height}">
+                 :style="{width, height}">
                 <div class="modal_header">
                     <div class="modal_header-title">{{title}}</div>
                     <div class="modal_header-close" @click="hide('close')">&times;</div>
                 </div>
                 <div class="modal_body"><slot></slot></div>
                 <div class="modal_buttons" v-if="buttons && buttons.length">
-                    <button v-for="button of buttons"
+                    <button v-for="button in buttons"
                             @click.prevent="buttonClicked(button)"
                             class="button" :class="button.cls">{{button.text}}</button>
                 </div>
@@ -146,7 +146,7 @@ export default {
 </script>
 
 <style rel="stylesheet/less" lang="less">
-.surge-modals-fader{
+.chayka-modals-fader{
     text-align: center;
     z-index: 100001;
     position: fixed;
