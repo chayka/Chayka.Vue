@@ -32,8 +32,8 @@
                 <input type="text" v-model="email"/>
             </form-field>
         </form-validator>
-        <button @click="sendFormSuccessRequest()">Submit form</button>
-        <button @click="sendFormErrorRequest()">Submit and render backend errors</button>
+        <button ref="btnSubmit1" @click="sendFormSuccessRequest()">Submit form</button>
+        <button ref="btnSubmit2" @click="sendFormErrorRequest()">Submit and render backend errors</button>
         <pre>{{formResponse}}</pre>
     </div>
 </template>
@@ -128,6 +128,7 @@
                     delay: 1000,
                     errorMessage: 'Frontend says Booo!',
                     validator: this.$refs.validator,
+                    buttons: [this.$refs.btnSubmit1, this.$refs.btnSubmit2],
                 }).then(response => this.formResponse = formatJson(response.body, null));
             },
 
@@ -137,6 +138,7 @@
                     delay: 1000,
                     errorMessage: false,
                     validator: this.$refs.validator,
+                    buttons: [this.$refs.btnSubmit1, this.$refs.btnSubmit2],
                 }).then(() => {}, response => this.formResponse = formatJson(response.body, null));
             },
         }

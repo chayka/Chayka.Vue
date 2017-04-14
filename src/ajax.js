@@ -21,6 +21,7 @@ const ajax = {
      * @param {string|boolean} options.errorMessage message to show when request completed with error
      * @param {number|boolean} options.delay add faked delayin ms (used for testing only)
      * @param {formValidator} options.validator
+     * @param {array} options.buttons
      * @param body
      */
     request (url, options, body = null) {
@@ -36,6 +37,9 @@ const ajax = {
 
         let spinnerId = null;
 
+        /**
+         * Shows spinner progress indicator
+         */
         function showSpinner() {
             if (options.spinner) {
                 if (typeof options.spinner === 'boolean') {
@@ -46,6 +50,9 @@ const ajax = {
             }
         }
 
+        /**
+         * Hides spinner progress indicator
+         */
         function hideSpinner() {
             if (options.spinner) {
                 if (typeof options.spinner === 'boolean' && spinnerId) {
@@ -56,6 +63,21 @@ const ajax = {
             }
         }
 
+        /**
+         * Disable buttons so user won't click save or cancel twice
+         */
+        function disableButtons() {
+            // console.log({buttons: options.buttons})
+            (options.buttons || []).forEach(button => button.disabled = true)
+        }
+
+        /**
+         * Enable buttons after request is completed
+         */
+        function enableButtons () {
+            (options.buttons || []).forEach(button => button.disabled = false)
+        }
+
         if (options.validator && !options.validator.validateFields()) {
             return Vue.Promise.reject({
                 validationErrors: options.validator.getErrors ()
@@ -64,6 +86,7 @@ const ajax = {
 
         options.before = function () {
             showSpinner()
+            disableButtons()
         };
 
         function sleep(ms) {
@@ -89,7 +112,8 @@ const ajax = {
         }
 
         function onSuccess (response) {
-            hideSpinner();
+            hideSpinner()
+            enableButtons()
             if (options.successMessage) {
                 let message = '';
                 if (typeof options.successMessage === 'boolean') {
@@ -105,7 +129,8 @@ const ajax = {
         }
 
         function onError (response) {
-            hideSpinner();
+            hideSpinner()
+            enableButtons()
             if (response.body.code === 'validation-errors' && options.validator){
                 options.validator.showErrors(response.body.payload);
             }
