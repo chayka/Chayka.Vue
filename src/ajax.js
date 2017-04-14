@@ -21,6 +21,7 @@ const ajax = {
      * @param {string|boolean} options.errorMessage message to show when request completed with error
      * @param {number|boolean} options.delay add faked delayin ms (used for testing only)
      * @param {formValidator} options.validator
+     * @param {Modal} options.modal
      * @param {array} options.buttons
      * @param body
      */
@@ -68,14 +69,16 @@ const ajax = {
          */
         function disableButtons() {
             // console.log({buttons: options.buttons})
-            (options.buttons || []).forEach(button => button.disabled = true)
+            (options.buttons || options.modal && options.modal.getButtonElements() || [])
+                .forEach(button => button.disabled = true)
         }
 
         /**
          * Enable buttons after request is completed
          */
         function enableButtons () {
-            (options.buttons || []).forEach(button => button.disabled = false)
+            (options.buttons || options.modal && options.modal.getButtonElements() || [])
+                .forEach(button => button.disabled = false)
         }
 
         if (options.validator && !options.validator.validateFields()) {

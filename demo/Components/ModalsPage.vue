@@ -64,6 +64,9 @@
 
             doStuff () {
                 console.log('Stuff done!');
+                let buttons = this.$refs.modalPopup.getButtonRefs();
+                console.log({buttons});
+
             },
 
             hidePopup (reason) {

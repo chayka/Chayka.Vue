@@ -140,6 +140,13 @@ export default {
             if (button.click) {
                 button.click()
             }
+        },
+
+        /**
+         * Get button elements so the ajax wrapper can disable/enable it
+         */
+        getButtonElements () {
+            return this.$el.querySelectorAll('.modal_buttons button')
         }
     }
 }
