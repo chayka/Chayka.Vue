@@ -1,7 +1,7 @@
 <template>
     <div class="chayka-spinners" v-if="spinners.length">
         <div class="spinners">
-            <spinner v-for="spinner of spinners" :message="spinner.message" :visible="true"></spinner>
+            <spinner v-for="spinner in spinners" :message="spinner.message" :visible="true"></spinner>
         </div>
     </div>
 </template>
