@@ -2,7 +2,7 @@
   "name": "vue-chayka-bootstrap",
   "version": "0.0.32",
   "description": "A set of handy vue components and services",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "npm test",
     "build": "cross-env NODE_ENV=production webpack --progress --config ./webpack/build.webpack.config.js",
