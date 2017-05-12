@@ -32,7 +32,10 @@
     export default {
         name: 'ModalsPage',
         created () {
-
+            modals.setButtonClasses({
+                regular: 'btn',
+                primary: 'btn-primary',
+            })
         },
         methods: {
 

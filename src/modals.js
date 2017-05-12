@@ -1,7 +1,21 @@
 import Vue from 'vue';
 
+let buttonClassBindings = {
+    regular: 'button',
+    primary: 'button-primary',
+    danger: 'button-danger',
+}
+
 export default new Vue({
     methods: {
+
+        /**
+         * Set button classes bindings. For example to adjust button styling to twitter bootstrap or WordPress
+         * @param bindings
+         */
+        setButtonClasses (bindings) {
+            Object.assign(buttonClassBindings, bindings);
+        },
 
         /**
          * Add an item to a queue and thus show a modal window.
@@ -59,7 +73,8 @@ export default new Vue({
                 cls: ['alert', 'pre-line'],
                 buttons: [{
                     text: 'Ok',
-                    click: okCallback
+                    click: okCallback,
+                    cls: [buttonClassBindings.regular]
                 }],
                 ...options
             });
@@ -82,9 +97,11 @@ export default new Vue({
                 buttons: [
                     {
                         text: 'No',
+                        cls: [buttonClassBindings.regular]
                     }, {
                         text: 'Yes',
-                        click: yesCallback
+                        click: yesCallback,
+                        cls: [buttonClassBindings.regular, buttonClassBindings.primary]
                     }
                 ],
                 ...options});

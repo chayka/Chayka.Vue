@@ -16,7 +16,7 @@
                 <div class="modal_buttons" v-if="buttons && buttons.length">
                     <button v-for="button in buttons"
                             @click.prevent="buttonClicked(button)"
-                            class="button" :class="button.cls">{{button.text}}</button>
+                            :class="button.cls">{{button.text}}</button>
                 </div>
             </div>
         </div>
