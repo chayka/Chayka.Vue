@@ -18,6 +18,13 @@ export default new Vue({
         },
 
         /**
+         * Get button classes bindings.
+         */
+        getButtonClasses () {
+            return buttonClassBindings;
+        },
+
+        /**
          * Add an item to a queue and thus show a modal window.
          *
          * @param {object} modal
@@ -74,7 +81,6 @@ export default new Vue({
                 buttons: [{
                     text: 'Ok',
                     click: okCallback,
-                    cls: [buttonClassBindings.regular]
                 }],
                 ...options
             });
@@ -97,11 +103,10 @@ export default new Vue({
                 buttons: [
                     {
                         text: 'No',
-                        cls: [buttonClassBindings.regular]
                     }, {
                         text: 'Yes',
                         click: yesCallback,
-                        cls: [buttonClassBindings.regular, buttonClassBindings.primary]
+                        cls: [buttonClassBindings.primary]
                     }
                 ],
                 ...options});
