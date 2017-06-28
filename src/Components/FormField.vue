@@ -58,7 +58,7 @@
                 return {
                     focus: this.focus,
                     required: this.validateRequired !== undefined,
-                    [this.state]: true,
+                    ['state-' + this.state]: true,
                 };
             }
         },
@@ -1041,7 +1041,7 @@
             }
         }
 
-        &.progress {
+        &.state-progress {
             .field-input{
                 position: relative;
                 &::before {
@@ -1102,29 +1102,29 @@
         .chayka-form-field{
             padding: 1ex;
         }
-        .valid{
+        .state-valid{
             background-color: lighten(@color-valid, 75%);
         }
-        .error{
+        .state-error{
             background-color: lighten(@color-error, 75%);
         }
-        .progress{
+        .state-progress{
             background-color: lighten(@color-progress, 75%);
         }
     }
 
     .colorize-label{
-        .valid{
+        .state-valid{
             .field-label{
                 color: @color-valid;
             }
         }
-        .error{
+        .state-error{
             .field-label{
                 color: @color-error;
             }
         }
-        .progress{
+        .state-progress{
             .field-label{
                 color: @color-progress;
             }
@@ -1132,7 +1132,7 @@
     }
 
     .colorize-input, .colorize-input-border{
-        .valid{
+        .state-valid{
             .input-box {
                 & > input[type=text],
                 & > input[type=password],
@@ -1148,7 +1148,7 @@
                 }
             }
         }
-        .error{
+        .state-error{
             .input-box {
                 & > input[type=text],
                 & > input[type=password],
@@ -1164,7 +1164,7 @@
                 }
             }
         }
-        .progress{
+        .state-progress{
             .input-box {
                 & > input[type=text],
                 & > input[type=password],
@@ -1183,7 +1183,7 @@
     }
 
     .colorize-input, .colorize-input-background {
-        .valid {
+        .state-valid {
             .input-box {
                 & > input[type=text],
                 & > input[type=password],
@@ -1198,7 +1198,7 @@
                 }
             }
         }
-        .error {
+        .state-error {
             .input-box {
                 & > input[type=text],
                 & > input[type=password],
@@ -1213,7 +1213,7 @@
                 }
             }
         }
-        .progress {
+        .state-progress {
             .input-box {
                 & > input[type=text],
                 & > input[type=password],
@@ -1230,7 +1230,7 @@
         }
     }
     .colorize-input, .colorize-input-font {
-        .valid {
+        .state-valid {
             .input-box {
                 & > input[type=text],
                 & > input[type=password],
@@ -1246,7 +1246,7 @@
                 }
             }
         }
-        .error {
+        .state-error {
             .input-box {
                 & > input[type=text],
                 & > input[type=password],
@@ -1262,7 +1262,7 @@
                 }
             }
         }
-        .progress {
+        .state-progress {
             .input-box {
                 & > input[type=text],
                 & > input[type=password],
@@ -1282,21 +1282,21 @@
     }
 
     .colorize-message{
-        .valid {
+        .state-valid {
             .field-input {
                 & > .message {
                     color: @color-valid;
                 }
             }
         }
-        .error {
+        .state-error {
             .field-input {
                 & > .message {
                     color: @color-error;
                 }
             }
         }
-        .progress {
+        .state-progress {
             .field-input {
                 & > .message {
                     color: @color-progress;
@@ -1383,7 +1383,7 @@
     }
 
     .message-float.colorize-message {
-        .valid{
+        .state-valid{
             .field-input {
                 & > .message {
                     border-color: @color-valid;
@@ -1396,7 +1396,7 @@
                 }
             }
         }
-        .error{
+        .state-error{
             .field-input {
                 & > .message {
                     border-color: @color-error;
@@ -1409,7 +1409,7 @@
                 }
             }
         }
-        .progress{
+        .state-progress{
             .field-input {
                 & > .message {
                     border-color: @color-progress;
